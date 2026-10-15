@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuu3D Support</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e0ddd8;
+      --text: #1a1917;
+      --text-sub: #5a5754;
+      --accent: #2e6b9e;
+      --accent-light: #e8f0f8;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 60px; height: 60px;
+      background: #111;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+    .app-icon svg { width: 36px; height: 36px; }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
+    .lang-switch {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+    .lang-switch:hover { background: var(--accent-light); }
+
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .intro p { font-size: 15px; color: var(--text-sub); }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .format-tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    .faq-group { margin-bottom: 24px; }
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-sub);
+      flex-shrink: 0;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 12px 16px 16px;
+      font-size: 14px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    .faq-body p + p { margin-top: 8px; }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+    .contact-card h2 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .contact-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 12px; }
+    .email-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--accent-light);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="10" width="24" height="16" rx="2" fill="none" stroke="#aad4f5" stroke-width="1.5"/>
+      <polygon points="18,4 30,10 18,16 6,10" fill="none" stroke="#aad4f5" stroke-width="1.5" stroke-linejoin="round"/>
+      <line x1="18" y1="16" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="6" y1="10" x2="6" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="30" y1="10" x2="30" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="6" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="30" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <h1>Kuu3D Support</h1>
+  <p>3D Data Viewer for iPhone &amp; iPad</p>
+  <a class="lang-switch" href="support.html">日本語</a>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>Kuu3D is a 3D viewer for iPhone and iPad. It supports USDZ, OBJ, STL, glTF / GLB, PLY, and more. Open files directly from the Files app, AirDrop, or the Share sheet of other apps.</p>
+  </div>
+
+  <div class="section-title">Supported Formats</div>
+  <div class="formats">
+    <span class="format-tag">USDZ</span>
+    <span class="format-tag">USD</span>
+    <span class="format-tag">OBJ</span>
+    <span class="format-tag">STL</span>
+    <span class="format-tag">glTF</span>
+    <span class="format-tag">GLB</span>
+    <span class="format-tag">PLY</span>
+    <span class="format-tag">Alembic (.abc)</span>
+  </div>
+
+  <div class="section-title">Frequently Asked Questions</div>
+
+  <!-- File loading -->
+  <div class="faq-group">
+    <div class="faq-group-title">File Loading &amp; Supported Formats</div>
+
+    <details>
+      <summary>What file types can I open?</summary>
+      <div class="faq-body">
+        <p>Kuu3D supports USDZ / USD, OBJ / STL, glTF / GLB, PLY (point cloud), and Alembic (.abc). Open files from the Files app, the Share sheet of other apps, or AirDrop.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Are there sample files included?</summary>
+      <div class="faq-body">
+        <p>Yes. Tap "Open sample (mesh)" or "Open sample (point cloud)" on the empty viewer screen. These samples are bundled with the app and do not count toward your library.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Loading takes a long time.</summary>
+      <div class="faq-body">
+        <p>Large files take time to load and prepare for display. A progress indicator shows the elapsed time — please wait until the model appears.</p>
+        <p>OBJ is a text format and is especially slow to load (roughly 10–12 s for ~6M vertices; 25–50 s for ~288 MB). Converting to STL or GLB will be significantly faster.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I can't open a large file.</summary>
+      <div class="faq-body">
+        <p>The free version can open files up to 150 MB. Larger files require the "Unlock All Features" in-app purchase.</p>
+        <p>Even with the purchase, files that are too large for your device's memory will show a confirmation before opening. As a guideline, files over ~500 MB (or ~10 million triangles for STL) may not open. Try decimating the mesh in a 3D app, or split the data before opening.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The app quit while opening a large file.</summary>
+      <div class="faq-body">
+        <p>The app may quit when device memory runs low. On the next launch, you'll be notified of the file that caused the quit. That file won't open automatically or generate a thumbnail. Try opening it again after reducing the file size.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I open .3mf or .fbx files?</summary>
+      <div class="faq-body">
+        <p>Not in the current version. Support for additional formats is planned for future updates.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Viewing -->
+  <div class="faq-group">
+    <div class="faq-group-title">Viewing &amp; Controls</div>
+
+    <details>
+      <summary>The model looks inside-out (reversed normals).</summary>
+      <div class="faq-body">
+        <p>Some files have face normals pointing inward. A warning message appears when you open such a file. Try toggling Z-up, or fix the normals in a 3D application.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I change the unit for dimensions?</summary>
+      <div class="faq-body">
+        <p>Tap the dimension line in the info bar to choose from mm, cm, m, or inches. Your choice is saved per file.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The dimensions show "(estimated)" — what does that mean?</summary>
+      <div class="faq-body">
+        <p>Kuu3D guesses the unit from the file format (e.g., USDZ and glTF → metres; STL → millimetres). Tap the dimension line and select the correct unit to remove "(estimated)" and save your choice.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I change the MatCap material?</summary>
+      <div class="faq-body">
+        <p>Tap the MatCap button in the toolbar to cycle through materials. The free version includes Resin Gray and Cel-look. The remaining 4 materials and Silhouette view are available after the "Unlock All Features" purchase.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I use wireframe view?</summary>
+      <div class="faq-body">
+        <p>Tap the wireframe button in the toolbar to overlay mesh lines on the model. The free version includes the "Kinari" (off-white) color. Navy Blue and Sakura Pink require the "Unlock All Features" purchase.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I change the background?</summary>
+      <div class="faq-body">
+        <p>Tap the background button in the toolbar to cycle through backgrounds. The free version includes Sky and Dusk. Night and Sakura require the "Unlock All Features" purchase.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The model is small and off-center.</summary>
+      <div class="faq-body">
+        <p>Double-tap the screen to fit the model to the view automatically.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What is Z-up?</summary>
+      <div class="faq-body">
+        <p>Different 3D applications use different axes as "up" (Y or Z). If your model appears lying on its side, try toggling the Z-up button in the toolbar.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I change the light direction?</summary>
+      <div class="faq-body">
+        <p>The light control is available with the "Unlock All Features" purchase. Tap the light button in the toolbar to enable it, then drag your finger across the model to change the light direction. Two-finger tap resets the light to its default position.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The turntable stops halfway.</summary>
+      <div class="faq-body">
+        <p>The free version's turntable stops after a half rotation (180°). Continuous rotation is available with the "Unlock All Features" purchase.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The toolbar disappeared during turntable.</summary>
+      <div class="faq-body">
+        <p>During turntable (auto-rotate) mode, the toolbar automatically hides after about 2 seconds. Tap the screen to show it again; it hides again 2 seconds after you lift your finger.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Library -->
+  <div class="faq-group">
+    <div class="faq-group-title">Library &amp; Data</div>
+
+    <details>
+      <summary>I was told the library is limited to 3 items.</summary>
+      <div class="faq-body">
+        <p>The free version can store up to 3 files in the library. The "Unlock All Features" purchase removes this limit. You can also delete existing files to make room for new ones in the free version.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What happens when I import a file into the library?</summary>
+      <div class="faq-body">
+        <p>Kuu3D copies the file into its own folder. Your original file is not affected.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>No thumbnail appears for a file in the library.</summary>
+      <div class="faq-body">
+        <p>Thumbnails are not generated for large files — over ~150 MB in the free version, or over ~300 MB with "Unlock All Features." Instead, the file size appears below the file name and the format (USD, STL, etc.) is shown in the top-right corner.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>My library data disappeared after switching devices.</summary>
+      <div class="faq-body">
+        <p>Library data is stored on the device. iCloud backup is not currently supported. Please keep your original files in a safe location.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Settings -->
+  <div class="faq-group">
+    <div class="faq-group-title">Settings</div>
+
+    <details>
+      <summary>Colors or textures from my file aren't showing.</summary>
+      <div class="faq-body">
+        <p>"Load Color" is turned off in Settings. Turn it on to display the textures, vertex colors, and materials from the file. Toggling this setting reloads the currently open file automatically. Note: point cloud colors are always shown regardless of this setting.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Purchase -->
+  <div class="faq-group">
+    <div class="faq-group-title">Purchase</div>
+
+    <details>
+      <summary>Is this a one-time purchase?</summary>
+      <div class="faq-body">
+        <p>Yes. "Unlock All Features" is a one-time purchase with no recurring charges. It is not a subscription.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What does "Unlock All Features" include?</summary>
+      <div class="faq-body">
+        <p>Opening files over 150 MB, unlimited library storage, all 6 MatCap materials and Silhouette view, all 4 backgrounds, all 3 wireframe colors, light direction control, field-of-view (FOV) adjustment, bounding box display, and continuous turntable rotation.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Is Family Sharing available?</summary>
+      <div class="faq-body">
+        <p>Family Sharing is not supported. The purchase is tied to the Apple ID used to buy it.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>My purchase disappeared after reinstalling or switching devices.</summary>
+      <div class="faq-body">
+        <p>Go to Settings and tap "Restore Purchases." As long as you are signed in with the same Apple ID, your purchase will be restored.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Privacy -->
+  <div class="faq-group">
+    <div class="faq-group-title">Privacy</div>
+
+    <details>
+      <summary>Does Kuu3D collect my data?</summary>
+      <div class="faq-body">
+        <p>No. Kuu3D does not collect any data. Files you open are stored only on your device and are never sent anywhere. The only network activity is Apple's App Store handling the in-app purchase transaction.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Other -->
+  <div class="faq-group">
+    <div class="faq-group-title">Other</div>
+
+    <details>
+      <summary>Can I play animations?</summary>
+      <div class="faq-body">
+        <p>Animation playback is not supported in the current version.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I take a screenshot?</summary>
+      <div class="faq-body">
+        <p>Kuu3D does not have a built-in screenshot function. Use iOS's standard screenshot method (Side button + Volume Up button) instead.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Does Kuu3D work on iPad?</summary>
+      <div class="faq-body">
+        <p>Yes. Kuu3D supports both iPhone and iPad, and iPad supports all orientations (portrait and landscape).</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I copied a large file directly into the Kuu3D folder in the Files app. Is that okay?</summary>
+      <div class="faq-body">
+        <p>The app may quit once, but two safety layers prevent repeated crashes. The library list only reads file names and sizes — it does not load file contents. Thumbnails are not generated for large files (over 150 MB free / over 300 MB with purchase). When you open the file, a confirmation appears. If the app quits during loading, you'll be notified on next launch, and that file won't open automatically. Try reducing the file size first.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-card">
+    <h2>Contact Support</h2>
+    <p>If your question is not answered above, please reach us by email.</p>
+    <a class="email-link" href="mailto:support.studio.yoru@gmail.com">support.studio.yoru@gmail.com</a>
+    <div class="note">Please include <strong>Kuu3D</strong> in the subject line so we can respond promptly.</div>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="privacy_en.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="support.html">日本語</a></p>
+  <p style="margin-top:8px;">© 2026 Studio_Yoru</p>
+</footer>
+
+</body>
+</html>

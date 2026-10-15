@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuu3D サポート</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e0ddd8;
+      --text: #1a1917;
+      --text-sub: #5a5754;
+      --accent: #2e6b9e;
+      --accent-light: #e8f0f8;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 60px; height: 60px;
+      background: #111;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+    .app-icon svg { width: 36px; height: 36px; }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
+    .lang-switch {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+    .lang-switch:hover { background: var(--accent-light); }
+
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .intro p { font-size: 15px; color: var(--text-sub); }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .format-tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    .faq-group { margin-bottom: 24px; }
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    details + details { margin-top: 0; }
+    summary {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "＋";
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-sub);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 0 16px 16px;
+      font-size: 14px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .faq-body p + p { margin-top: 8px; }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+    .contact-card h2 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .contact-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 12px; }
+    .email-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--accent-light);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="10" width="24" height="16" rx="2" fill="none" stroke="#aad4f5" stroke-width="1.5"/>
+      <polygon points="18,4 30,10 18,16 6,10" fill="none" stroke="#aad4f5" stroke-width="1.5" stroke-linejoin="round"/>
+      <line x1="18" y1="16" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="6" y1="10" x2="6" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="30" y1="10" x2="30" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="6" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+      <line x1="30" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <h1>Kuu3D サポート</h1>
+  <p>iPhone・iPad 向け 3D データビューワー</p>
+  <a class="lang-switch" href="support_en.html">English</a>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>Kuu3D は、iPhone と iPad で 3D データをきれいに見るためのアプリです。USDZ・OBJ・STL・glTF / GLB・PLY など主要な形式に対応し、ファイルアプリや AirDrop からすぐに開けます。</p>
+  </div>
+
+  <div class="section-title">対応ファイル形式</div>
+  <div class="formats">
+    <span class="format-tag">USDZ</span>
+    <span class="format-tag">USD</span>
+    <span class="format-tag">OBJ</span>
+    <span class="format-tag">STL</span>
+    <span class="format-tag">glTF</span>
+    <span class="format-tag">GLB</span>
+    <span class="format-tag">PLY</span>
+    <span class="format-tag">Alembic (.abc)</span>
+  </div>
+
+  <div class="section-title">よくある質問</div>
+
+  <!-- ファイルの読み込み -->
+  <div class="faq-group">
+    <div class="faq-group-title">ファイルの読み込み・対応形式</div>
+
+    <details>
+      <summary>開けるファイルの種類は？</summary>
+      <div class="faq-body">
+        <p>USDZ / USD、OBJ / STL、glTF / GLB、PLY（点群）、Alembic（.abc）に対応しています。ファイルアプリや他のアプリの「共有」から開けます。AirDrop にも対応しています。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>サンプルのデータはありますか？</summary>
+      <div class="faq-body">
+        <p>データを開いていない画面の「サンプルを開く」から、メッシュと点群のサンプルを開けます。サンプルはライブラリには入りません。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ファイルを開くのに時間がかかる。</summary>
+      <div class="faq-body">
+        <p>データが大きいと、読み込みと表示の準備に時間がかかります。読み込み中は「ファイルを読み込み中…」「表示を準備中…」と経過秒数が表示されます。モデルが表示されるまで、そのままお待ちください。</p>
+        <p>OBJ はテキスト形式のため、特に時間がかかります（目安：約 600 万頂点で 10〜12 秒、約 288MB で 25〜50 秒）。同じ形状を STL や GLB に変換すると、大幅に速くなります。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>大きなファイルが開けない。</summary>
+      <div class="faq-body">
+        <p>無料版で開けるファイルは 150MB までです。それを超えるファイルは、全機能のロック解除で開けるようになります。</p>
+        <p>全機能のロック解除をしても、端末のメモリに対して大きすぎるファイルは、開く前に確認のメッセージが出ます。目安として約 500MB（STL では約 1,000 万三角形）を超えるデータは、開けないことがあります。3D ソフトでポリゴン数を減らす（デシメーション）か、データを分割してから開いてください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>大きなファイルを開いたら、アプリが終了した。</summary>
+      <div class="faq-body">
+        <p>端末のメモリが足りなくなると、アプリが終了することがあります。次に起動したときに、終了したファイルの名前をお知らせします。そのファイルは自動では開かず、サムネイルも作りません。手動で開き直して読み込めたときは、通常の扱いに戻ります。データを軽くしてからお試しください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>.3mf や .fbx は開けますか？</summary>
+      <div class="faq-body">
+        <p>現在のバージョンでは対応していません。今後のアップデートで対応予定です。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 表示・操作 -->
+  <div class="faq-group">
+    <div class="faq-group-title">表示・操作</div>
+
+    <details>
+      <summary>モデルが裏返しに見える（法線が逆）。</summary>
+      <div class="faq-body">
+        <p>データによっては、面の向きが逆になっている場合があります。開いたときに確認のメッセージが出ます。Z-up の切り替えや、別の 3D ソフトでの修正もお試しください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>寸法の単位を変えたい。</summary>
+      <div class="faq-body">
+        <p>情報バーに表示されている寸法をタップすると、mm・cm・m・インチから選べます。選択はファイルごとに保存されます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>寸法に「推定」と出る。</summary>
+      <div class="faq-body">
+        <p>ファイルの形式から単位を自動で判断しています（例：USDZ・glTF はメートル、STL はミリメートル）。タップして正しい単位を選ぶと「推定」の表示が消え、その選択が保存されます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>MatCap（質感）を変えたい。</summary>
+      <div class="faq-body">
+        <p>ツールバーの MatCap ボタンを押すと切り替えられます。無料版はレジン グレーとセルルックの 2 種です。残り 4 種とシルエット表示は、全機能のロック解除で使えます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ワイヤーフレームを使いたい。</summary>
+      <div class="faq-body">
+        <p>ツールバーのワイヤーフレームボタンで、メッシュの線を重ねて表示できます。無料版は「キナリ」の 1 色です。紺碧とサクラは、全機能のロック解除で使えます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>背景を変えたい。</summary>
+      <div class="faq-body">
+        <p>ツールバーの背景ボタンで切り替えられます。無料版は空と黄昏の 2 種です。夜とサクラは、全機能のロック解除で使えます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>モデルが画面の端に寄って小さく表示される。</summary>
+      <div class="faq-body">
+        <p>画面をダブルタップすると、全体が画面に収まるよう自動調整されます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Z-up とは何ですか？</summary>
+      <div class="faq-body">
+        <p>3D ソフトによって、上方向の軸が Y か Z か異なります。モデルが横倒しに見える場合は、ツールバーの Z-up ボタンを切り替えてください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ライトの方向を変えたい。</summary>
+      <div class="faq-body">
+        <p>ライトは、全機能のロック解除で使える機能です。ツールバーのライトボタンを押すと有効になります。オブジェクトの上を指でなぞると、当たる光の方向を変えられます。2 本指でタップすると、ライトの方向を初期位置にリセットできます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ターンテーブルが途中で止まる。</summary>
+      <div class="faq-body">
+        <p>無料版のターンテーブルは、半周（180°）で止まります。全機能のロック解除で、回し続けられます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ターンテーブル中にボタンが消えた。</summary>
+      <div class="faq-body">
+        <p>ターンテーブル（自動回転）中は、約 2 秒たつと画面のボタンが自動的に消えます。画面に触れると再表示され、指を離して約 2 秒後に、また消えます。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- ライブラリ -->
+  <div class="faq-group">
+    <div class="faq-group-title">ライブラリ・データ管理</div>
+
+    <details>
+      <summary>ライブラリに保存できる数が 3 件までと言われた。</summary>
+      <div class="faq-body">
+        <p>無料版のライブラリ保存数は 3 件までです。全機能のロック解除で無制限になります。既存のデータを削除すれば、無料版でも新しいデータを取り込めます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ライブラリに取り込むとデータはどうなりますか？</summary>
+      <div class="faq-body">
+        <p>ファイルを Kuu3D のフォルダにコピーします。元のファイルはそのまま残ります。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ライブラリのサムネイルが出ない。</summary>
+      <div class="faq-body">
+        <p>大きなファイルは、サムネイルを作りません。無料版は約 150MB、全機能のロック解除をした場合は約 300MB を超えるファイルが対象です。ファイル名の下にファイルサイズ、右上に形式（USD・STL など）を表示します。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>機種変更したら、ライブラリのデータが消えた。</summary>
+      <div class="faq-body">
+        <p>ライブラリのデータは端末内に保存されます。iCloud へのバックアップは現在対応していません。大切なデータは、元のファイルとして保管しておいてください。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 設定 -->
+  <div class="faq-group">
+    <div class="faq-group-title">設定</div>
+
+    <details>
+      <summary>データの色やテクスチャが反映されない。</summary>
+      <div class="faq-body">
+        <p>設定の「色の読み込み」がオフになっています。オンにすると、データが持つテクスチャ・頂点カラー・マテリアルを使って表示します。切り替えると、開いているデータを自動的に読み込み直します。なお、点群の色は常に反映されます。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- 購入 -->
+  <div class="faq-group">
+    <div class="faq-group-title">購入・課金</div>
+
+    <details>
+      <summary>買い切りですか？</summary>
+      <div class="faq-body">
+        <p>はい、買い切りです。一度購入すれば、追加料金なく使い続けられます。サブスクリプションではありません。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>全機能のロック解除で、何ができますか？</summary>
+      <div class="faq-body">
+        <p>150MB を超える大きなファイルを開く、ライブラリの保存数の無制限、MatCap 全 6 種とシルエット、背景全 4 種、ワイヤーフレームの全 3 色、ライト調整、画角（FOV）の切り替え、大きさの確認（外枠の箱）、ターンテーブルの回し続けが使えるようになります。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ファミリー共有はできますか？</summary>
+      <div class="faq-body">
+        <p>現在は対応していません。購入した Apple ID ごとにご利用ください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>機種変更・再インストール後に購入が消えた。</summary>
+      <div class="faq-body">
+        <p>設定画面の「購入の復元」を押してください。同じ Apple ID でお使いであれば、購入済みの状態に戻ります。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- プライバシー -->
+  <div class="faq-group">
+    <div class="faq-group-title">プライバシー・通信</div>
+
+    <details>
+      <summary>個人情報やデータを収集していますか？</summary>
+      <div class="faq-body">
+        <p>いいえ。データを一切収集しません。開いたファイルは端末の中だけに保存され、外部へ送信しません。購入の手続きだけは、Apple の App Store が行います。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- その他 -->
+  <div class="faq-group">
+    <div class="faq-group-title">その他</div>
+
+    <details>
+      <summary>アニメーションの再生はできますか？</summary>
+      <div class="faq-body">
+        <p>現在のバージョンでは対応していません。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>スクリーンショットを保存したい。</summary>
+      <div class="faq-body">
+        <p>アプリ内にスクリーンショット機能はありません。iOS の標準機能（サイドボタン＋音量ボタン）でお使いください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>iPad でも使えますか？</summary>
+      <div class="faq-body">
+        <p>はい。iPhone・iPad の両方に対応しています。iPad は全方向（縦・横）に対応しています。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ファイルアプリから直接 Kuu3D フォルダに重いデータを入れた。アプリは大丈夫？</summary>
+      <div class="faq-body">
+        <p>一度は終了する可能性がありますが、2 段階の安全策があり、繰り返し終了することはありません。ライブラリの一覧は、ファイル名とサイズを読むだけで、データの中身は読みません。サムネイルは、大きなファイル（無料版は 150MB 超、有料版は 300MB 超）では作りません。開くときは確認が出ます。読み込み中に終了した場合は、次の起動でお知らせし、そのファイルは自動では開きません。データを軽くしてからお試しください。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- お問い合わせ -->
+  <div class="contact-card">
+    <h2>お問い合わせ</h2>
+    <p>上記の FAQ で解決しない場合は、メールでお問い合わせください。</p>
+    <a class="email-link" href="mailto:support.studio.yoru@gmail.com">support.studio.yoru@gmail.com</a>
+    <div class="note">件名に「<strong>Kuu3D</strong>」と入れていただくと、スムーズに対応できます。</div>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="privacy.html">プライバシーポリシー</a> &nbsp;|&nbsp; <a href="support_en.html">English</a></p>
+  <p style="margin-top:8px;">© 2026 Studio_Yoru</p>
+</footer>
+
+</body>
+</html>
