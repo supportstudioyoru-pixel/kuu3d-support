@@ -32,15 +32,14 @@
     }
     .app-icon {
       width: 60px; height: 60px;
-      background: #111;
       border-radius: 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 10px;
       box-shadow: var(--shadow);
+      overflow: hidden;
     }
-    .app-icon svg { width: 36px; height: 36px; }
     header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
     header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
     .lang-switch {
@@ -188,15 +187,7 @@
 
 <header>
   <div class="app-icon">
-    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="6" y="10" width="24" height="16" rx="2" fill="none" stroke="#aad4f5" stroke-width="1.5"/>
-      <polygon points="18,4 30,10 18,16 6,10" fill="none" stroke="#aad4f5" stroke-width="1.5" stroke-linejoin="round"/>
-      <line x1="18" y1="16" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
-      <line x1="6" y1="10" x2="6" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
-      <line x1="30" y1="10" x2="30" y2="26" stroke="#aad4f5" stroke-width="1.5"/>
-      <line x1="6" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
-      <line x1="30" y1="26" x2="18" y2="32" stroke="#aad4f5" stroke-width="1.5"/>
-    </svg>
+    <img src="kuu3d-icon.png" alt="Kuu3D" width="60" height="60">
   </div>
   <h1>Kuu3D サポート</h1>
   <p>iPhone・iPad 向け 3D データビューワー</p>
@@ -279,14 +270,14 @@
     <details>
       <summary>モデルが裏返しに見える（法線が逆）。</summary>
       <div class="faq-body">
-        <p>データによっては、面の向きが逆になっいる場合があります。開いたときに確認のメッセージが出ます。Z-up の切り替えや、別の 3D ソフトでの修正もお試しください。</p>
+        <p>データによっては、面の向きが逆になっている場合があります。開いたときに確認のメッセージが出ます。Z-up の切り替えや、別の 3D ソフトでの修正もお試しかださい。</p>
       </div>
     </details>
 
     <details>
       <summary>寸法の単位を変えたい。</summary>
       <div class="faq-body">
-        <p>情報バーに表示されている寸法をタップしると、mm・cm・m・インチから選べます。選択はファイルごとに䁫保存されます。</p>
+        <p>情報バーに表示されている寸法をタップすると、mm・cm・m・インチから選べます。選択はファイルごとに保存されます。</p>
       </div>
     </details>
 
@@ -300,7 +291,7 @@
     <details>
       <summary>MatCap（質感）を変えたい。</summary>
       <div class="faq-body">
-        <p>ツールバーの MatCap ボタンを押すと切り替えられます。無料版はレジン グレーとセルルックの 2 種です。残り 4 種とシルエット表示は、全機能のロック解除で使えます。</p>
+        <p>ツールバーの MatCap ボタンを押すと切り替えられます。無料版はレジン グレーとセルルック 2 種です。残り 4 種とシルエット表示は、全機能のロック解除で使えます。</p>
       </div>
     </details>
 
@@ -326,7 +317,7 @@
     </details>
 
     <details>
-      <summary>Z-up とは何ですか？</summary>
+      <summary>Z-up とは何ですお���</summary>
       <div class="faq-body">
         <p>3D ソフトによって、上方向の軸が Y か Z か異なります。モデルが横倒しに見える場合は、ツールバーの Z-up ボタンを切り替えてください。</p>
       </div>
@@ -362,12 +353,12 @@
     <details>
       <summary>ライブラリに保存できる数が 3 件までと言われた。</summary>
       <div class="faq-body">
-        <p>無料版のライブラリ保存数は 3 件までです。全機能のロック解除で無制限になります。既存のデータを削除すれば、無料版でも新しいデータを取り込めます。</p>
+        <p>無料版のライブラリ保存数は 3 件までです。全機能のロック解除で無制限になります。既存のデータを削除すよば、無料版でも新しいデータを取り込めます。</p>
       </div>
     </details>
 
     <details>
-      <summary>ライブラリに取り込むとデータはどうなりますか？</summary>
+      <summary>ライブラリに取り込むとデータはどうなりまぁお���</summary>
       <div class="faq-body">
         <p>ファイルを Kuu3D のフォルダにコピーします。元のファイルはそのまま残ります。</p>
       </div>
@@ -383,7 +374,7 @@
     <details>
       <summary>機種変更したら、ライブラリのデータが消えた。</summary>
       <div class="faq-body">
-        <p>ライブラリのデータは端末内に保存されます。iCloud へのバックアップは現在対応していません。大切なデータは、元のファイルとして保管しておいてください。</p>
+        <p>ライブラリのデータは端末内に保存されます。iCloud へのバc��クアップは現在対応していません。大切なデータは、元のファイルとして保管しておいてください。</p>
       </div>
     </details>
 
@@ -396,7 +387,7 @@
     <details>
       <summary>データの色やテクスチャが反映されない。</summary>
       <div class="faq-body">
-        <p>設定の「色の読み込み」がオフになっています。オンにすると、データが持つテクスチャ・頂点カラー・マテリアルを使って表示します。切り替えると、開いているデータを自動的に読み込み直します。なお、点群の色は常に反映されます。</p>
+        <p>設定の「色のみ���み」がオフになっています。オンにすると、データが持つテクスチャ・頂点カラー・マテリアルを使って表示します。切り替えると、開いているデータを自動的に読み込み直します。なお、点群の色は常に反映されます。</p>
       </div>
     </details>
 
@@ -407,21 +398,21 @@
     <div class="faq-group-title">購入・課金</div>
 
     <details>
-      <summary>買い切りですお���</summary>
+      <summary>買い切りですか？</summary>
       <div class="faq-body">
-        <p>はい、買い切りです。一度購入すれば、追加料金なく使い続けられます。サブスクリプションではありません。</p>
+        <p>はい、買い切りです。一度購入しれば、追加料金なく使い続けられます。サブスクリプションではありません。</p>
       </div>
     </details>
 
     <details>
       <summary>全機能のロック解除で、何ができますか？</summary>
       <div class="faq-body">
-        <p>150MB を超える大きなファイルを開く、ライブラリの保存数の無制限、MatCap 全 6 種とシルエット、背景全 4 種、ワイヤーフレームの全 3 色、ライト調整、画角（FOV）の切り替え、大きさの確認（外枠の箱）、ターンテーブルの回し続けが使えるようになります。</p>
+        <p>150MB を超える大きなファイルを開く、ライブラリの保存数、MatCap 全 6 種とシルエット、背景全 4 種、ワイヤーフレームの全 3 色、ライト調整、画角（FOV）の切り替え、大きさの確認（外枠の箱）、ターンテーブルの回し続けが使えるようになります。</p>
       </div>
     </details>
 
     <details>
-      <summary>ファミリー共有はできますか？</summary>
+      <summary>ファミリー共有はできますお���</summary>
       <div class="faq-body">
         <p>現在は対応していません。購入した Apple ID ごとにご利用ください。</p>
       </div>
