@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuu3D Supporto</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e0ddd8;
+      --text: #1a1917;
+      --text-sub: #5a5754;
+      --accent: #2e6b9e;
+      --accent-light: #e8f0f8;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
+    .lang-switch {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+    .lang-switch:hover { background: var(--accent-light); }
+
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .intro p { font-size: 15px; color: var(--text-sub); }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .format-tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    .faq-group { margin-bottom: 24px; }
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-sub);
+      flex-shrink: 0;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 12px 16px 16px;
+      font-size: 14px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    .faq-body p + p { margin-top: 8px; }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+    .contact-card h2 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .contact-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 12px; }
+    .email-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--accent-light);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">
+    <img src="kuu3d-icon.png" alt="Kuu3D" width="60" height="60">
+  </div>
+  <h1>Kuu3D Supporto</h1>
+  <p>Visualizzatore 3D per iPhone &amp; iPad</p>
+  <a class="lang-switch" href="support_en.html">English</a>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>Kuu3D è un visualizzatore 3D per iPhone e iPad. Supporta USDZ, OBJ, STL, glTF / GLB, PLY e altri formati. Apri i file direttamente dall'app File, tramite AirDrop o dal menu Condividi di altre app.</p>
+  </div>
+
+  <div class="section-title">Formati supportati</div>
+  <div class="formats">
+    <span class="format-tag">USDZ</span>
+    <span class="format-tag">USD</span>
+    <span class="format-tag">OBJ</span>
+    <span class="format-tag">STL</span>
+    <span class="format-tag">glTF</span>
+    <span class="format-tag">GLB</span>
+    <span class="format-tag">PLY</span>
+  </div>
+
+  <div class="section-title">Domande frequenti</div>
+
+  <!-- Apertura file -->
+  <div class="faq-group">
+    <div class="faq-group-title">Apertura file</div>
+
+    <details>
+      <summary>Quali tipi di file posso aprire?</summary>
+      <div class="faq-body">
+        <p>Kuu3D supporta USDZ / USD, OBJ, STL, glTF / GLB e PLY (nuvole di punti). Puoi aprire file dall'app File o dal menu Condividi di altre app. È supportato anche AirDrop.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Ci sono dati di esempio?</summary>
+      <div class="faq-body">
+        <p>Nella schermata senza nessun modello aperto, tocca «Apri esempio» per provare una mesh (la Luna) o una nuvola di punti (un nodo a trifoglio). Gli esempi non vengono aggiunti alla libreria.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I file impiegano molto tempo per aprirsi.</summary>
+      <div class="faq-body">
+        <p>I modelli di grandi dimensioni richiedono più tempo per caricarsi. Il tempo trascorso viene mostrato: attendi finché il modello appare. OBJ è un formato testuale e impiega particolarmente a lungo. Convertire la stessa forma in STL o GLB è molto più veloce.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Non riesco ad aprire un file di grandi dimensioni.</summary>
+      <div class="faq-body">
+        <p>Se un file è troppo grande per la memoria del dispositivo, prima dell'apertura appare un messaggio di conferma. In linea di massima, i modelli superiori a circa 500 MB (circa 10 milioni di triangoli per STL) potrebbero non aprirsi. Riduci il numero di poligoni nel tuo software 3D o dividi il modello.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Il file è troppo pesante o voglio alleggerirlo.</summary>
+      <div class="faq-body">
+        <p>L'app web gratuita «Sirppi3D Web» riduce il numero di triangoli di un file 3D. Il pulsante «Abbina dimensioni Kuu3D» imposta la dimensione ottimale per un'apertura fluida in Kuu3D. Funziona interamente nel browser: i tuoi file non vengono mai caricati.</p><p><a href="https://supportstudioyoru-pixel.github.io/sirppi3d-web/" target="_blank" rel="noopener">Apri Sirppi3D Web</a></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>L'app si è chiusa durante l'apertura di un file grande.</summary>
+      <div class="faq-body">
+        <p>Se il dispositivo esaurisce la memoria, l'app può chiudersi. Al prossimo avvio, verrà mostrato il nome del file che era aperto. Quel file non si aprirà automaticamente e non verrà creata alcuna miniatura. Riprova dopo aver alleggerito il modello.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Ho inserito un file pesante direttamente nella cartella Kuu3D tramite l'app File.</summary>
+      <div class="faq-body">
+        <p>L'app potrebbe chiudersi una volta, ma non continuerà a farlo ripetutamente. L'elenco legge solo nomi e dimensioni, e non vengono create miniature per i file grandi. All'apertura appare una verifica della memoria. Se l'app si chiude durante il caricamento, al prossimo avvio riceverai una notifica e il file non si aprirà automaticamente.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Posso aprire file .3mf o .fbx?</summary>
+      <div class="faq-body">
+        <p>Non supportati nella versione attuale.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">Visualizzazione &amp; Controlli</div>
+
+    <details>
+      <summary>Il modello sembra essere capovolto.</summary>
+      <div class="faq-body">
+        <p>Alcuni modelli hanno la direzione delle facce invertita (normali). All'apertura appare un messaggio di conferma. Prova ad attivare/disattivare Z-Up o correggi il modello in un altro software 3D.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio cambiare l'unità di misura.</summary>
+      <div class="faq-body">
+        <p>Tocca le dimensioni nella barra informazioni per scegliere tra mm, cm, m o pollici. La scelta viene salvata per ogni file.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Le dimensioni mostrano «stimato».</summary>
+      <div class="faq-body">
+        <p>L'unità viene rilevata automaticamente dal formato del file. Tocca e scegli l'unità corretta: l'etichetta «stimato» scomparirà e la scelta verrà salvata.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio cambiare il MatCap (aspetto del materiale).</summary>
+      <div class="faq-body">
+        <p>Tocca il pulsante MatCap nella barra degli strumenti per passare tra i 6 MatCap e la vista silhouette.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio cambiare lo sfondo.</summary>
+      <div class="faq-body">
+        <p>Usa il pulsante sfondo nella barra degli strumenti per passare tra 4 sfondi: Cielo, Tramonto, Notte e Sakura.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio usare la visualizzazione wireframe.</summary>
+      <div class="faq-body">
+        <p>Usa il pulsante wireframe nella barra degli strumenti per sovrapporre le linee della mesh. Puoi scegliere tra 3 colori.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Il modello appare piccolo e spostato verso il bordo dello schermo.</summary>
+      <div class="faq-body">
+        <p>Tocca due volte lo schermo per adattare automaticamente l'intero modello nella vista.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio inclinare il modello.</summary>
+      <div class="faq-body">
+        <p>Ruota due dita come se disegnassi un cerchio e il modello si inclinerà attorno alla direzione di visione. Tocca due volte per tornare all'orientamento originale.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Cos'è Z-Up?</summary>
+      <div class="faq-body">
+        <p>Diversi software 3D usano Y o Z come asse verticale. Se il modello appare di lato, attiva il pulsante Z-Up nella barra degli strumenti.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio cambiare la direzione della luce.</summary>
+      <div class="faq-body">
+        <p>Tocca il pulsante luce nella barra degli strumenti: sullo schermo apparirà un cerchio bianco. Trascina all'interno del cerchio per cambiare la direzione della luce. Il piccolo punto indica la posizione della luce. Quando è pieno e bianco, la luce è davanti al modello; quando è solo un contorno, la luce è dietro. Il cerchio appare sempre al centro del modello e svanisce automaticamente. Tocca di nuovo il pulsante luce per uscire. La direzione viene mantenuta e torna alla posizione predefinita quando si passa al MatCap o al wireframe.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>La rotazione automatica si interrompe a metà.</summary>
+      <div class="faq-body">
+        <p>Nella versione gratuita, la rotazione automatica si interrompe dopo mezzo giro (180°). Sblocca Tutte le funzionalità per mantenerla in rotazione.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I pulsanti sono scomparsi durante la rotazione automatica.</summary>
+      <div class="faq-body">
+        <p>Durante la rotazione automatica, i pulsanti sullo schermo si nascondono automaticamente dopo circa 2 secondi. Tocca lo schermo per mostrarli di nuovo; si nascondono di nuovo circa 2 secondi dopo aver sollevato il dito. Puoi disattivarlo nelle Impostazioni.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">Libreria &amp; Gestione dati</div>
+
+    <details>
+      <summary>Mi è stato detto che la libreria è limitata a 3 elementi.</summary>
+      <div class="faq-body">
+        <p>La versione gratuita può memorizzare fino a 3 elementi nella libreria. Sblocca Tutte le funzionalità per uno spazio illimitato. Puoi anche eliminare elementi esistenti per importarne di nuovi nella versione gratuita.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Cosa succede al mio file quando lo importo nella libreria?</summary>
+      <div class="faq-body">
+        <p>Il file viene copiato nella cartella Kuu3D. Il file originale rimane dov'era.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Le miniature della libreria non appaiono.</summary>
+      <div class="faq-body">
+        <p>Le miniature non vengono create per i file di grandi dimensioni, per evitare problemi di memoria durante la generazione. Al loro posto, vengono mostrate le dimensioni del file sotto il nome e il formato in alto a destra.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I dati della mia libreria sono scomparsi dopo aver cambiato dispositivo.</summary>
+      <div class="faq-body">
+        <p>I dati della libreria sono memorizzati sul tuo dispositivo. Il backup su iCloud non è attualmente supportato. Conserva i tuoi file importanti come originali.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">Impostazioni</div>
+
+    <details>
+      <summary>I colori o le texture del modello non vengono applicati.</summary>
+      <div class="faq-body">
+        <p>«Carica colori» nelle Impostazioni è disattivato. Quando è attivo, i modelli vengono visualizzati con le loro texture, colori dei vertici e materiali. La modifica ricarica automaticamente il modello aperto. I colori delle nuvole di punti vengono sempre applicati.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">Acquisto</div>
+
+    <details>
+      <summary>È un acquisto una tantum?</summary>
+      <div class="faq-body">
+        <p>Sì, è un acquisto una tantum (non un abbonamento). Acquista una volta e usa senza costi aggiuntivi. La Condivisione in famiglia non è supportata.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Cosa ottengo con Sblocca tutte le funzionalità?</summary>
+      <div class="faq-body">
+        <p>Puoi memorizzare elementi illimitati nella libreria e mantenere la rotazione automatica. Tutte le altre funzionalità sono gratuite.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Il mio acquisto è scomparso dopo aver cambiato dispositivo o reinstallato.</summary>
+      <div class="faq-body">
+        <p>Tocca «Ripristina acquisto» nella schermata Impostazioni. Se usi lo stesso ID Apple, il tuo acquisto verrà ripristinato.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">Privacy &amp; Altro</div>
+
+    <details>
+      <summary>Raccogliete informazioni personali o i miei dati?</summary>
+      <div class="faq-body">
+        <p>No. Non raccogliamo alcun dato. I file che apri vengono memorizzati solo sul tuo dispositivo e non vengono mai inviati da nessuna parte. (Solo il processo di acquisto è gestito dall'App Store di Apple.)</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Posso riprodurre animazioni?</summary>
+      <div class="faq-body">
+        <p>Non supportato nella versione attuale.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Voglio salvare uno screenshot.</summary>
+      <div class="faq-body">
+        <p>L'app non ha una funzione screenshot. Usa il metodo integrato di iOS (pulsante laterale + pulsante volume).</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Posso usarlo su iPad?</summary>
+      <div class="faq-body">
+        <p>Sì. Funziona sia su iPhone che su iPad, e su iPad sia in modalità verticale che orizzontale.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="contact-card">
+    <h2>Contatta il supporto</h2>
+    <p>Se la tua domanda non ha ricevuto risposta sopra, contattaci via email.</p>
+    <a class="email-link" href="mailto:support.studio.yoru@gmail.com">support.studio.yoru@gmail.com</a>
+    <div class="note">Includi <strong>Kuu3D</strong> nell'oggetto dell'email così potremo risponderti rapidamente.</div>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="privacy_en.html">Informativa sulla privacy</a> &nbsp;|&nbsp; <a href="support_en.html">English</a> &nbsp;|&nbsp; <a href="support.html">日本語</a></p>
+  <p style="margin-top:8px;">© 2026 Studio_Yoru</p>
+</footer>
+
+</body>
+</html>

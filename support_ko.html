@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuu3D 지원</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e0ddd8;
+      --text: #1a1917;
+      --text-sub: #5a5754;
+      --accent: #2e6b9e;
+      --accent-light: #e8f0f8;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
+    .lang-switch {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+    .lang-switch:hover { background: var(--accent-light); }
+
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .intro p { font-size: 15px; color: var(--text-sub); }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .format-tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    .faq-group { margin-bottom: 24px; }
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-sub);
+      flex-shrink: 0;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 12px 16px 16px;
+      font-size: 14px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    .faq-body p + p { margin-top: 8px; }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+    .contact-card h2 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .contact-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 12px; }
+    .email-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--accent-light);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">
+    <img src="kuu3d-icon.png" alt="Kuu3D" width="60" height="60">
+  </div>
+  <h1>Kuu3D 지원</h1>
+  <p>iPhone &amp; iPad용 3D 뷰어</p>
+  <a class="lang-switch" href="support_en.html">English</a>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>Kuu3D는 iPhone과 iPad를 위한 3D 뷰어입니다. USDZ, OBJ, STL, glTF / GLB, PLY 등의 형식을 지원합니다. 파일 앱, AirDrop 또는 다른 앱의 공유 메뉴에서 바로 파일을 열 수 있습니다.</p>
+  </div>
+
+  <div class="section-title">지원 형식</div>
+  <div class="formats">
+    <span class="format-tag">USDZ</span>
+    <span class="format-tag">USD</span>
+    <span class="format-tag">OBJ</span>
+    <span class="format-tag">STL</span>
+    <span class="format-tag">glTF</span>
+    <span class="format-tag">GLB</span>
+    <span class="format-tag">PLY</span>
+  </div>
+
+  <div class="section-title">자주 묻는 질문</div>
+
+  <!-- 파일 열기 -->
+  <div class="faq-group">
+    <div class="faq-group-title">파일 열기</div>
+
+    <details>
+      <summary>어떤 파일 형식을 열 수 있나요?</summary>
+      <div class="faq-body">
+        <p>Kuu3D는 USDZ / USD, OBJ, STL, glTF / GLB, PLY(포인트 클라우드)를 지원합니다. 파일 앱 또는 다른 앱의 공유 메뉴에서 파일을 열 수 있으며, AirDrop도 지원됩니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>샘플 데이터가 있나요?</summary>
+      <div class="faq-body">
+        <p>모델이 없는 화면에서 「샘플 열기」를 탭하면 메시(달)나 포인트 클라우드(트레포일 매듭)를 체험할 수 있습니다. 샘플은 라이브러리에 추가되지 않습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>파일 열기에 시간이 오래 걸립니다.</summary>
+      <div class="faq-body">
+        <p>큰 모델은 로딩에 시간이 걸립니다. 경과 시간이 표시되므로 모델이 나타날 때까지 기다려 주세요. OBJ는 텍스트 형식이라 특히 시간이 걸립니다. 같은 형태를 STL이나 GLB로 변환하면 훨씬 빠릅니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>대용량 파일을 열 수 없습니다.</summary>
+      <div class="faq-body">
+        <p>파일이 기기 메모리에 비해 너무 크면 열기 전에 확인 메시지가 표시됩니다. 대략 500MB(STL 기준 약 1000만 삼각형) 이상의 모델은 열리지 않을 수 있습니다. 3D 소프트웨어에서 폴리곤 수를 줄이거나 모델을 분할해 보세요.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>파일이 너무 무겁거나 가볍게 만들고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>무료 웹 앱 「Sirppi3D Web」은 3D 파일의 삼각형 수를 줄여줍니다. 「Kuu3D 크기에 맞추기」 버튼을 누르면 Kuu3D에서 원활하게 열리는 크기로 설정됩니다. 모든 처리가 브라우저에서 이루어지며 파일은 업로드되지 않습니다.</p><p><a href="https://supportstudioyoru-pixel.github.io/sirppi3d-web/" target="_blank" rel="noopener">Sirppi3D Web 열기</a></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>대용량 파일을 열다가 앱이 종료되었습니다.</summary>
+      <div class="faq-body">
+        <p>기기 메모리가 부족하면 앱이 종료될 수 있습니다. 다음 실행 시 열려 있던 파일 이름이 표시됩니다. 해당 파일은 자동으로 열리지 않으며 썸네일도 생성되지 않습니다. 모델을 가볍게 만든 후 다시 시도해 보세요.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>파일 앱으로 Kuu3D 폴더에 무거운 파일을 직접 넣었습니다.</summary>
+      <div class="faq-body">
+        <p>앱이 한 번 종료될 수 있지만 반복해서 종료되지는 않습니다. 목록은 이름과 크기만 읽으며, 대용량 파일에는 썸네일이 생성되지 않습니다. 파일을 열 때 메모리 확인이 표시됩니다. 로딩 중 앱이 종료되면 다음 실행 시 알림이 표시되고 파일은 자동으로 열리지 않습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>.3mf나 .fbx 파일을 열 수 있나요?</summary>
+      <div class="faq-body">
+        <p>현재 버전에서는 지원되지 않습니다.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">보기 &amp; 조작</div>
+
+    <details>
+      <summary>모델이 안팎이 뒤집혀 보입니다.</summary>
+      <div class="faq-body">
+        <p>일부 모델은 면의 방향(법선)이 반전되어 있습니다. 열 때 확인 메시지가 표시됩니다. Z-Up을 전환하거나 다른 3D 소프트웨어에서 모델을 수정해 보세요.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>치수 단위를 변경하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>정보 바의 치수를 탭하면 mm, cm, m, 인치 중에서 선택할 수 있습니다. 선택은 파일별로 저장됩니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>치수에 「추정」이라고 표시됩니다.</summary>
+      <div class="faq-body">
+        <p>단위는 파일 형식에서 자동으로 감지됩니다. 탭하여 올바른 단위를 선택하면 「추정」 표시가 사라지고 선택이 저장됩니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>MatCap(재질 모양)을 변경하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>툴바의 MatCap 버튼을 탭하여 6가지 MatCap과 실루엣 뷰를 전환할 수 있습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>배경을 변경하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>툴바의 배경 버튼으로 하늘, 황혼, 밤, 벚꽃 등 4가지 배경을 전환할 수 있습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>와이어프레임을 사용하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>툴바의 와이어프레임 버튼으로 메시 선을 오버레이할 수 있습니다. 3가지 색상으로 전환 가능합니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>모델이 작게 화면 가장자리에 나타납니다.</summary>
+      <div class="faq-body">
+        <p>화면을 두 번 탭하면 전체 모델이 화면에 맞게 자동으로 조정됩니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>모델을 기울이고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>두 손가락으로 원을 그리듯 회전하면 모델이 시선 방향을 축으로 기울어집니다. 두 번 탭하면 원래 방향으로 돌아옵니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Z-Up이란 무엇인가요?</summary>
+      <div class="faq-body">
+        <p>3D 소프트웨어마다 Y 또는 Z를 위 방향 축으로 사용합니다. 모델이 옆으로 누워 있으면 툴바의 Z-Up 버튼을 전환해 보세요.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>광원 방향을 변경하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>툴바의 광원 버튼을 탭하면 화면에 흰색 원이 나타납니다. 원 안을 드래그하여 광원 방향을 조절합니다. 원 안의 작은 점이 광원의 위치를 나타냅니다. 점이 흰색으로 채워져 있으면 광원이 모델 앞쪽(보이는 쪽)에 있는 것이고, 윤곽만 있으면 모델 뒤쪽에 있는 것입니다. 원은 항상 모델 중심에 표시되며 자동으로 사라집니다. 광원 버튼을 다시 탭하면 종료됩니다. 광원 방향은 유지되며, MatCap이나 와이어프레임으로 전환하면 기본 위치로 돌아옵니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>턴테이블이 도중에 멈춥니다.</summary>
+      <div class="faq-body">
+        <p>무료 버전에서는 턴테이블이 반 바퀴(180°) 후 멈춥니다. 「모든 기능 잠금 해제」로 계속 회전시킬 수 있습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>턴테이블 중 버튼이 사라졌습니다.</summary>
+      <div class="faq-body">
+        <p>턴테이블(자동 회전) 중에는 약 2초 후 화면 버튼이 자동으로 숨겨집니다. 화면을 터치하면 다시 표시되며, 손가락을 떼고 약 2초 후 다시 숨겨집니다. 설정에서 이 기능을 끌 수 있습니다.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">라이브러리 &amp; 데이터 관리</div>
+
+    <details>
+      <summary>라이브러리가 3개로 제한된다고 나옵니다.</summary>
+      <div class="faq-body">
+        <p>무료 버전은 라이브러리에 최대 3개의 항목을 저장할 수 있습니다. 「모든 기능 잠금 해제」로 무제한 저장이 가능합니다. 무료 버전에서도 기존 항목을 삭제하여 새 항목을 가져올 수 있습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>라이브러리로 가져올 때 파일은 어떻게 되나요?</summary>
+      <div class="faq-body">
+        <p>파일이 Kuu3D 폴더에 복사됩니다. 원본 파일은 원래 위치에 그대로 남습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>라이브러리 썸네일이 표시되지 않습니다.</summary>
+      <div class="faq-body">
+        <p>대용량 파일은 생성 중 메모리 부족을 방지하기 위해 썸네일을 만들지 않습니다. 대신 파일 이름 아래에 파일 크기가, 오른쪽 위에 형식이 표시됩니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>기기를 변경한 후 라이브러리 데이터가 사라졌습니다.</summary>
+      <div class="faq-body">
+        <p>라이브러리 데이터는 기기에 저장됩니다. 현재 iCloud 백업은 지원되지 않습니다. 중요한 파일은 원본을 보관해 주세요.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">설정</div>
+
+    <details>
+      <summary>모델 색상이나 텍스처가 적용되지 않습니다.</summary>
+      <div class="faq-body">
+        <p>설정의 「색상 로드」가 꺼져 있습니다. 켜면 텍스처, 버텍스 색상, 재질이 적용된 상태로 모델이 표시됩니다. 전환하면 열려 있는 모델이 자동으로 다시 로드됩니다. 포인트 클라우드 색상은 항상 적용됩니다.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">구매</div>
+
+    <details>
+      <summary>일회성 구매인가요?</summary>
+      <div class="faq-body">
+        <p>네, 일회성 구매입니다(구독 아님). 한 번 구매하면 추가 비용 없이 사용할 수 있습니다. 가족 공유는 지원되지 않습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>「모든 기능 잠금 해제」로 무엇을 얻을 수 있나요?</summary>
+      <div class="faq-body">
+        <p>라이브러리에 무제한으로 항목을 저장하고 턴테이블을 계속 회전시킬 수 있습니다. 그 외 모든 기능은 무료로 사용할 수 있습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>기기 변경이나 재설치 후 구매가 사라졌습니다.</summary>
+      <div class="faq-body">
+        <p>설정 화면에서 「구매 복원」을 탭하세요. 동일한 Apple ID를 사용 중이라면 구매가 복원됩니다.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">개인정보 &amp; 기타</div>
+
+    <details>
+      <summary>개인정보나 제 데이터를 수집하나요?</summary>
+      <div class="faq-body">
+        <p>아니요. 어떤 데이터도 수집하지 않습니다. 열린 파일은 기기에만 저장되며 어디에도 전송되지 않습니다. (구매 과정만 Apple의 App Store에서 처리됩니다.)</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>애니메이션을 재생할 수 있나요?</summary>
+      <div class="faq-body">
+        <p>현재 버전에서는 지원되지 않습니다.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>스크린샷을 저장하고 싶습니다.</summary>
+      <div class="faq-body">
+        <p>앱에는 스크린샷 기능이 없습니다. iOS 기본 방법(측면 버튼 + 볼륨 버튼)을 사용해 주세요.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>iPad에서도 사용할 수 있나요?</summary>
+      <div class="faq-body">
+        <p>네. iPhone과 iPad 모두에서 작동하며, iPad에서는 세로 및 가로 방향 모두 지원됩니다.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="contact-card">
+    <h2>지원팀 문의</h2>
+    <p>위 내용에서 해답을 찾지 못하셨다면 이메일로 문의해 주세요.</p>
+    <a class="email-link" href="mailto:support.studio.yoru@gmail.com">support.studio.yoru@gmail.com</a>
+    <div class="note">빠른 답변을 위해 제목에 <strong>Kuu3D</strong>를 포함해 주세요.</div>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="privacy_en.html">개인정보 처리방침</a> &nbsp;|&nbsp; <a href="support_en.html">English</a> &nbsp;|&nbsp; <a href="support.html">日本語</a></p>
+  <p style="margin-top:8px;">© 2026 Studio_Yoru</p>
+</footer>
+
+</body>
+</html>

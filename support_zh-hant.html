@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuu3D 支援</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e0ddd8;
+      --text: #1a1917;
+      --text-sub: #5a5754;
+      --accent: #2e6b9e;
+      --accent-light: #e8f0f8;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    header p { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
+    .lang-switch {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+    .lang-switch:hover { background: var(--accent-light); }
+
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .intro p { font-size: 15px; color: var(--text-sub); }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .format-tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
+    .faq-group { margin-bottom: 24px; }
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.05em;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-sub);
+      flex-shrink: 0;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 12px 16px 16px;
+      font-size: 14px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    .faq-body p + p { margin-top: 8px; }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 32px;
+    }
+    .contact-card h2 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .contact-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 12px; }
+    .email-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--accent-light);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">
+    <img src="kuu3d-icon.png" alt="Kuu3D" width="60" height="60">
+  </div>
+  <h1>Kuu3D 支援</h1>
+  <p>iPhone &amp; iPad 的 3D 檢視器</p>
+  <a class="lang-switch" href="support_en.html">English</a>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>Kuu3D 是適用於 iPhone 和 iPad 的 3D 檢視器，支援 USDZ、OBJ、STL、glTF / GLB、PLY 等格式。可直接從「檔案」App、AirDrop 或其他 App 的分享選單開啟檔案。</p>
+  </div>
+
+  <div class="section-title">支援的格式</div>
+  <div class="formats">
+    <span class="format-tag">USDZ</span>
+    <span class="format-tag">USD</span>
+    <span class="format-tag">OBJ</span>
+    <span class="format-tag">STL</span>
+    <span class="format-tag">glTF</span>
+    <span class="format-tag">GLB</span>
+    <span class="format-tag">PLY</span>
+  </div>
+
+  <div class="section-title">常見問題</div>
+
+  <!-- 開啟檔案 -->
+  <div class="faq-group">
+    <div class="faq-group-title">開啟檔案</div>
+
+    <details>
+      <summary>可以開啟哪些檔案類型？</summary>
+      <div class="faq-body">
+        <p>Kuu3D 支援 USDZ / USD、OBJ、STL、glTF / GLB 和 PLY（點雲）。可以從「檔案」App 或其他 App 的分享選單開啟檔案，也支援 AirDrop。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>有範例資料嗎？</summary>
+      <div class="faq-body">
+        <p>在沒有開啟模型的介面，輕點「開啟範例」可以體驗網格（月球）或點雲（三葉結）。範例不會新增到您的資料庫。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>檔案開啟時間很長。</summary>
+      <div class="faq-body">
+        <p>大型模型需要更長時間載入。介面會顯示已用時間，請耐心等待模型出現。OBJ 是文字格式，載入時間尤其長。將相同形狀轉換為 STL 或 GLB 會快得多。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>無法開啟大型檔案。</summary>
+      <div class="faq-body">
+        <p>如果檔案對裝置記憶體來說過大，開啟前會顯示確認提示。一般來說，超過約 500MB（STL 約 1000 萬三角面）的模型可能無法開啟。請在 3D 軟體中減少多邊形數量，或將模型分割後再開啟。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>檔案太大，或想要縮小檔案體積。</summary>
+      <div class="faq-body">
+        <p>免費 Web 應用程式「Sirppi3D Web」可以減少 3D 檔案的三角面數。點擊「符合 Kuu3D 大小」按鈕，即可設定在 Kuu3D 中流暢開啟的大小。所有處理在瀏覽器中完成，檔案不會被上傳。</p><p><a href="https://supportstudioyoru-pixel.github.io/sirppi3d-web/" target="_blank" rel="noopener">開啟 Sirppi3D Web</a></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>開啟大型檔案時 App 退出了。</summary>
+      <div class="faq-body">
+        <p>如果裝置記憶體不足，App 可能會退出。下次啟動時會顯示之前開啟的檔案名稱。該檔案不會自動開啟，也不會產生縮圖。請將模型縮小後重試。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>我透過「檔案」App 將大型檔案直接放入了 Kuu3D 資料夾。</summary>
+      <div class="faq-body">
+        <p>App 可能會退出一次，但不會反覆退出。清單只讀取檔案名稱和大小，大型檔案不會產生縮圖。開啟時會顯示記憶體檢查提示。如果載入時 App 退出，下次啟動時會收到通知，且檔案不會自動開啟。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>可以開啟 .3mf 或 .fbx 檔案嗎？</summary>
+      <div class="faq-body">
+        <p>目前版本不支援。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">顯示與操作</div>
+
+    <details>
+      <summary>模型看起來內外翻轉了。</summary>
+      <div class="faq-body">
+        <p>部分模型的面方向（法線）是反的。開啟時會出現確認提示。嘗試切換 Z-Up，或在其他 3D 軟體中修正模型。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想更改尺寸單位。</summary>
+      <div class="faq-body">
+        <p>輕點資訊列中的尺寸，可在 mm、cm、m 和英寸之間選擇。所選單位會針對每個檔案個別儲存。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>尺寸顯示「估算值」。</summary>
+      <div class="faq-body">
+        <p>單位從檔案格式自動偵測。輕點並選擇正確單位，「估算值」標籤即會消失，您的選擇也會被儲存。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想更改 MatCap（材質外觀）。</summary>
+      <div class="faq-body">
+        <p>輕點工具列中的 MatCap 按鈕，在 6 種 MatCap 和輪廓視圖之間切換。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想更改背景。</summary>
+      <div class="faq-body">
+        <p>使用工具列中的背景按鈕，在天空、黃昏、夜晚和櫻花 4 種背景之間切換。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想使用線框模式。</summary>
+      <div class="faq-body">
+        <p>使用工具列中的線框按鈕疊加顯示網格線。可在 3 種顏色之間切換。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>模型顯示很小且偏向螢幕邊緣。</summary>
+      <div class="faq-body">
+        <p>連按兩下螢幕可自動將整個模型調整到視圖中央。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想傾斜模型。</summary>
+      <div class="faq-body">
+        <p>用兩根手指畫圓旋轉，模型會沿視線方向傾斜。連按兩下可恢復原始方向。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>什麼是 Z-Up？</summary>
+      <div class="faq-body">
+        <p>不同的 3D 軟體使用 Y 或 Z 作為垂直軸。如果模型看起來側倒著，請切換工具列中的 Z-Up 按鈕。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想更改光源方向。</summary>
+      <div class="faq-body">
+        <p>輕點工具列中的光源按鈕，螢幕上會出現一個白色圓圈。在圓圈內拖動即可更改光源方向。圓圈內的小點顯示光源位置。小點為實心白色時，光源在模型正面（您正在查看的一側）；僅有輪廓時，光源在模型背面。圓圈始終顯示在模型中心，不操作時會自動消失。再次輕點光源按鈕即可退出。光源方向會被保留，切換到 MatCap 或線框時會恢復到預設位置。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>旋轉台在中途停止。</summary>
+      <div class="faq-body">
+        <p>免費版旋轉台轉半圈（180°）後停止。解鎖所有功能可保持持續旋轉。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>旋轉台運行時按鈕消失了。</summary>
+      <div class="faq-body">
+        <p>旋轉台（自動旋轉）運行時，螢幕按鈕約 2 秒後自動隱藏。輕觸螢幕可再次顯示；放開手指約 2 秒後再次隱藏。可在「設定」中關閉此功能。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">資料庫與資料管理</div>
+
+    <details>
+      <summary>提示資料庫限制為 3 個項目。</summary>
+      <div class="faq-body">
+        <p>免費版資料庫最多可儲存 3 個項目。解鎖所有功能可無限儲存。免費版中也可以刪除現有項目後匯入新項目。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>將檔案匯入資料庫後會發生什麼？</summary>
+      <div class="faq-body">
+        <p>檔案會被複製到 Kuu3D 資料夾。原始檔案保留在原位置。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>資料庫縮圖不顯示。</summary>
+      <div class="faq-body">
+        <p>大型檔案不會產生縮圖，以避免產生時記憶體不足。取而代之，檔案名稱下方會顯示檔案大小，右上角顯示格式。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>更換裝置後資料庫資料消失了。</summary>
+      <div class="faq-body">
+        <p>資料庫資料儲存在裝置上，目前不支援 iCloud 備份。請保留重要檔案的原始副本。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">設定</div>
+
+    <details>
+      <summary>模型顏色或貼圖未被套用。</summary>
+      <div class="faq-body">
+        <p>「設定」中的「載入顏色」已關閉。開啟後，模型將以其貼圖、頂點顏色和材質顯示。切換時會自動重新載入目前開啟的模型。點雲顏色始終會被套用。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">購買</div>
+
+    <details>
+      <summary>是一次性購買嗎？</summary>
+      <div class="faq-body">
+        <p>是的，這是一次性購買（非訂閱）。購買一次，無需額外付費即可使用。不支援家人共享。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>「解鎖所有功能」包含哪些內容？</summary>
+      <div class="faq-body">
+        <p>可在資料庫中無限儲存項目，並保持旋轉台持續旋轉。其他所有功能均免費使用。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>更換裝置或重新安裝後購買消失了。</summary>
+      <div class="faq-body">
+        <p>在「設定」介面輕點「恢復購買」。如果使用相同的 Apple ID，購買將被恢復。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-group-title">隱私與其他</div>
+
+    <details>
+      <summary>會收集個人資訊或我的資料嗎？</summary>
+      <div class="faq-body">
+        <p>不會。我們不收集任何資料。您開啟的檔案僅儲存在您的裝置上，不會傳送到任何地方。（僅購買過程由 Apple 的 App Store 處理。）</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>可以播放動畫嗎？</summary>
+      <div class="faq-body">
+        <p>目前版本不支援。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>想儲存截圖。</summary>
+      <div class="faq-body">
+        <p>App 沒有截圖功能。請使用 iOS 內建方法（側邊按鈕 + 音量按鈕）。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>可以在 iPad 上使用嗎？</summary>
+      <div class="faq-body">
+        <p>可以。支援 iPhone 和 iPad，iPad 上同時支援直向和橫向。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="contact-card">
+    <h2>聯絡支援</h2>
+    <p>如果以上內容未能解答您的問題，請透過電子郵件聯絡我們。</p>
+    <a class="email-link" href="mailto:support.studio.yoru@gmail.com">support.studio.yoru@gmail.com</a>
+    <div class="note">請在郵件主旨中註明 <strong>Kuu3D</strong>，以便我們及時回覆。</div>
+  </div>
+
+</main>
+
+<footer>
+  <p><a href="privacy_en.html">隱私權政策</a> &nbsp;|&nbsp; <a href="support_en.html">English</a> &nbsp;|&nbsp; <a href="support.html">日本語</a></p>
+  <p style="margin-top:8px;">© 2026 Studio_Yoru</p>
+</footer>
+
+</body>
+</html>
